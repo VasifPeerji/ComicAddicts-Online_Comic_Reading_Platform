@@ -1,0 +1,62 @@
+﻿@model List<SSL.Models.ApplicationUser>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+    <link rel="stylesheet" href="~/Content/app.css" class="cs">
+    <link rel="stylesheet" href="~/Content/bootstrap.css" class="cs">
+    <script src="~/Content/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    @{Html.RenderAction("Navbar", "Account");}
+
+
+    <table class="table-dark table-bordered table-striped text-center mt-4 w-100" id="mytable">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Avatar</th>
+            <th>Delete Account</th>
+            <!-- Add other properties you want to display -->
+        </tr>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                @if (user.ProfilePicture != null)
+                {
+                    <td><img src="@user.ProfilePicture" width="200px" /></td>
+                }
+                else
+                {
+                    <td><img src="~/Media/Images/spiderman-icon.jpg" width="200px" /></td>
+                }
+            <td>
+                <a href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" style="background-color: red; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Delete</a>
+
+            </td>
+                <!-- Add other properties you want to display -->
+            </tr>
+        }
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+
+</body>
+</html>

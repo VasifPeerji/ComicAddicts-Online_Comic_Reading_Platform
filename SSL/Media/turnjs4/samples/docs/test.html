@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        // Function to get query parameter by name
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get the 'val' query parameter
+        const val = getQueryParam('val');
+
+        // Check if 'val' exists and then log and write it
+        if (val) {
+            console.log(val);
+            document.write(val);
+        } else {
+            console.log('No "val" query parameter found.');
+        }
+    </script>
+</body>
+</html>

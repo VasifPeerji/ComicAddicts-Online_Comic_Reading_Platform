@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #flipbook .page{
+            background-color: black;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="flipbook">
+
+        <div>
+            <h1>First</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores eligendi nulla facere? Maxime explicabo impedit deleniti hic earum esse nihil, sed architecto corporis. Assumenda sunt sapiente sint quaerat id ipsa!</p>
+        </div>
+
+        <div>
+            <h1>Second</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur enim odit ducimus expedita iste, libero quasi deserunt soluta non, ratione provident debitis iure porro numquam molestiae delectus quos, maiores pariatur.</p>
+        </div>
+
+        <div>
+            <h1>Third</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde voluptates eligendi amet inventore error repellat cum, officiis illo expedita deserunt, animi velit quasi quia veritatis molestias repudiandae minima. Voluptate, dicta?</p>
+        </div>
+
+        <div>
+            <h1>Fourth</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo debitis iusto, cupiditate, unde ratione nam illo tempore cum, quae distinctio temporibus labore dolorem laborum modi. Eligendi saepe vitae neque excepturi?</p>
+        </div>
+
+        <div>
+            <h1>Fifth</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti veniam enim ab dolor placeat provident, optio inventore minima, aliquam excepturi asperiores velit quod ipsum a! Iste quibusdam quae blanditiis eveniet?</p>
+        </div>
+
+        <div>
+            <h1>Sixth</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ex eius distinctio eveniet praesentium nostrum tempore eum quod? Labore, blanditiis! Cumque eum numquam dolorem officiis molestias explicabo expedita nulla quam.</p>
+        </div>
+
+        <div>
+            <h1>Last</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, facere, perspiciatis voluptates nam sed harum dolore voluptatem consequuntur vero culpa illo temporibus optio aliquam corporis iste, quas cum officia soluta.</p>
+        </div>
+
+    </div>
+
+   
+    <script type="text/javascript">
+        $("#flipbook").turn({
+            width:600,
+            height:400,
+            page:1,
+            autoCenter:true,
+            duration:2000
+        })
+    </script>
+</body>
+</html>

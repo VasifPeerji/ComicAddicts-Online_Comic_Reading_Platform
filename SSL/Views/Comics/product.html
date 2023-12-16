@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link rel="icon" href="/Images/billyboylogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./product/product.css">
+    <!--GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+    <!--OWL CAROUSEL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <!--BOX ICONS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   <link rel="stylesheet" href="navbar.css">
+    
+</head>
+<body>
+
+    <!--NAV-->
+<div class="nav-wrapper">
+    <div class="container">
+        <div class="nav">
+            <a href="#" class="logo">
+                <i class='bx bxs-movie-play bx-tada main-color'></i>Billy<span class="main-color">Bo</span>y
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#"></a></li>
+                <li>
+                    <a href="sign/signIn.html" class="btn btn-hover">
+                        <span>Sign in</span>
+                    </a>
+                </li>
+            </ul>
+            <!--MOBILE MENU TOGGLE-->
+            <div class="hamburger-menu" id="hamburger-menu">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END NAV-->
+
+
+    <div class="wrapper">
+        <h1 class="header">COMING SOON!</h1>
+        <p class="description">Stay tuned for updates, announcements, and exclusive previews as we countdown to the big reveal. In the mean time read our books and ensure to give wonderful feedbacks. Thank you for your patience and enthusiasm.</p>
+        <div class="timer">
+            <div class="sub_timer">
+                <h1 id="day" class="digit">00</h1>
+                <p class="digit_name">Days</p>
+            </div>
+            <div class="sub_timer">
+                <h1 id="hour" class="digit">00</h1>
+                <p class="digit_name">Hours</p>
+            </div>
+            <div class="sub_timer">
+                <h1 id="min" class="digit">00</h1>
+                <p class="digit_name">Minutes</p>
+            </div>
+            <div class="sub_timer">
+                <h1 id="sec" class="digit">00</h1>
+                <p class="digit_name">Seconds</p>
+            </div>
+        </div>
+    </div>
+
+   <!--Timer Java Scripts-->
+   <script>
+       var target_mili_sec = new Date("Jun 24, 2023 14:30:0").getTime();
+       function timer() {
+           var now_mili_sec = new Date().getTime();
+           var remaining_sec = Math.floor( (target_mili_sec - now_mili_sec) / 1000 );
+
+           var day = Math.floor(remaining_sec / (3600 * 24));
+           var hour = Math.floor((remaining_sec % (3600 * 24)) / 3600);
+           var min = Math.floor((remaining_sec % 3600) / 60);
+           var sec = Math.floor(remaining_sec % 60);
+
+           document.querySelector("#day").innerHTML = day;
+           document.querySelector("#hour").innerHTML = hour;
+           document.querySelector("#min").innerHTML = min;
+           document.querySelector("#sec").innerHTML = sec;
+       }
+
+       setInterval(timer, 1000);
+   </script>
+    
+    <!--SCRIPT-->
+    <!--JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!--OWL CAROUSEL-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--APP SCRIPT-->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{81C9677E-822C-4680-BD74-D1B3C4C6B2F8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SSL</RootNamespace>
+    <AssemblyName>SSL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44325</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Authenticator, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GoogleAuthenticator.3.1.1\lib\net462\Google.Authenticator.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.Core, Version=13.2.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET.Core.13.2.0\lib\netstandard20\Magick.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.33.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.33.0\lib\net462\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.7.0.0\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio, Version=6.15.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.6.15.2\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\api\ComicsController.cs" />
+    <Compile Include="Controllers\ComicsController.cs" />
+    <Compile Include="Controllers\FreeTrialsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipTypeController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Decompressor.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310030514023_droppingBothTables.cs" />
+    <Compile Include="Migrations\202310030514023_droppingBothTables.Designer.cs">
+      <DependentUpon>202310030514023_droppingBothTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310030516243_genresTableCreated.cs" />
+    <Compile Include="Migrations\202310030516243_genresTableCreated.Designer.cs">
+      <DependentUpon>202310030516243_genresTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310030516554_comicsTableCreated.cs" />
+    <Compile Include="Migrations\202310030516554_comicsTableCreated.Designer.cs">
+      <DependentUpon>202310030516554_comicsTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310030658532_populateGenres.cs" />
+    <Compile Include="Migrations\202310030658532_populateGenres.Designer.cs">
+      <DependentUpon>202310030658532_populateGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310031207246_changesDone.cs" />
+    <Compile Include="Migrations\202310031207246_changesDone.Designer.cs">
+      <DependentUpon>202310031207246_changesDone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310130651098_categoriesTableAdded.cs" />
+    <Compile Include="Migrations\202310130651098_categoriesTableAdded.Designer.cs">
+      <DependentUpon>202310130651098_categoriesTableAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310310800275_FreeTrialsCreated.cs" />
+    <Compile Include="Migrations\202310310800275_FreeTrialsCreated.Designer.cs">
+      <DependentUpon>202310310800275_FreeTrialsCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311355522_FreeTrialsCreated1.cs" />
+    <Compile Include="Migrations\202310311355522_FreeTrialsCreated1.Designer.cs">
+      <DependentUpon>202310311355522_FreeTrialsCreated1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311356241_populateFreeTrials.cs" />
+    <Compile Include="Migrations\202310311356241_populateFreeTrials.Designer.cs">
+      <DependentUpon>202310311356241_populateFreeTrials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311403408_FreeTrialsCreated2.cs" />
+    <Compile Include="Migrations\202310311403408_FreeTrialsCreated2.Designer.cs">
+      <DependentUpon>202310311403408_FreeTrialsCreated2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311407465_freeTrialsTableCreated.cs" />
+    <Compile Include="Migrations\202310311407465_freeTrialsTableCreated.Designer.cs">
+      <DependentUpon>202310311407465_freeTrialsTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311408404_freeTrialsTableDeleted.cs" />
+    <Compile Include="Migrations\202310311408404_freeTrialsTableDeleted.Designer.cs">
+      <DependentUpon>202310311408404_freeTrialsTableDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311409157_freeTrialsTableCreated1.cs" />
+    <Compile Include="Migrations\202310311409157_freeTrialsTableCreated1.Designer.cs">
+      <DependentUpon>202310311409157_freeTrialsTableCreated1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311410510_freeTrialsTablePopulated.cs" />
+    <Compile Include="Migrations\202310311410510_freeTrialsTablePopulated.Designer.cs">
+      <DependentUpon>202310311410510_freeTrialsTablePopulated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311060647058_ProfilePictureAdded.cs" />
+    <Compile Include="Migrations\202311060647058_ProfilePictureAdded.Designer.cs">
+      <DependentUpon>202311060647058_ProfilePictureAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311061205490_ProfilePictureAdded1.cs" />
+    <Compile Include="Migrations\202311061205490_ProfilePictureAdded1.Designer.cs">
+      <DependentUpon>202311061205490_ProfilePictureAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311071641285_ProfilePictureRequiredRemoved.cs" />
+    <Compile Include="Migrations\202311071641285_ProfilePictureRequiredRemoved.Designer.cs">
+      <DependentUpon>202311071641285_ProfilePictureRequiredRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312031507062_merchandiseTableCreated.cs" />
+    <Compile Include="Migrations\202312031507062_merchandiseTableCreated.Designer.cs">
+      <DependentUpon>202312031507062_merchandiseTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312031709364_RatingsTableCreated.cs" />
+    <Compile Include="Migrations\202312031709364_RatingsTableCreated.Designer.cs">
+      <DependentUpon>202312031709364_RatingsTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312042032257_ratingsTableUserIdIntToString.cs" />
+    <Compile Include="Migrations\202312042032257_ratingsTableUserIdIntToString.Designer.cs">
+      <DependentUpon>202312042032257_ratingsTableUserIdIntToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312060844148_ratingsNowNullable.cs" />
+    <Compile Include="Migrations\202312060844148_ratingsNowNullable.Designer.cs">
+      <DependentUpon>202312060844148_ratingsNowNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312121956172_whatChanges.cs" />
+    <Compile Include="Migrations\202312121956172_whatChanges.Designer.cs">
+      <DependentUpon>202312121956172_whatChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ComicGenresDto.cs" />
+    <Compile Include="Models\Comics.cs" />
+    <Compile Include="Models\DateInThePastAttribute.cs" />
+    <Compile Include="Models\FreeTrials.cs" />
+    <Compile Include="Models\GenreDropdown.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Merchandise.cs" />
+    <Compile Include="Models\Ratings.cs" />
+    <Compile Include="Models\RemoveIfExistsValidation.cs" />
+    <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\UniqueTitleValidation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rename.cs" />
+    <Compile Include="RoleConfig.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ComicFormViewModel.cs" />
+    <Compile Include="ViewModel\GetComicsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\app.css" />
+    <Content Include="Content\app.js" />
+    <Content Include="Content\avatar.css" />
+    <Content Include="Content\avatar.js" />
+    <Content Include="Content\bootbox.min.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\code.jquery.com_jquery-3.7.1.min.js" />
+    <Content Include="Content\contact.css" />
+    <Content Include="Content\description.css" />
+    <Content Include="Content\files\css\docs.css" />
+    <Content Include="Content\files\css\jquery.ui.css" />
+    <Content Include="Content\files\css\jquery.ui.html4.css" />
+    <Content Include="Content\files\extras\jGestures-license.txt" />
+    <Content Include="Content\files\extras\jgestures.min.js" />
+    <Content Include="Content\files\extras\jquery-ui-1.8.20.custom.min.js" />
+    <Content Include="Content\files\extras\jquery.min.1.7.js" />
+    <Content Include="Content\files\extras\jquery.mousewheel.min.js" />
+    <Content Include="Content\files\extras\modernizr.2.5.3.min.js" />
+    <Content Include="Content\files\images2\1.jpg" />
+    <Content Include="Content\files\images2\10.jpg" />
+    <Content Include="Content\files\images2\11.jpg" />
+    <Content Include="Content\files\images2\12.jpg" />
+    <Content Include="Content\files\images2\13.jpg" />
+    <Content Include="Content\files\images2\14.jpg" />
+    <Content Include="Content\files\images2\15.jpg" />
+    <Content Include="Content\files\images2\16.jpg" />
+    <Content Include="Content\files\images2\17.jpg" />
+    <Content Include="Content\files\images2\18.jpg" />
+    <Content Include="Content\files\images2\19.jpg" />
+    <Content Include="Content\files\images2\2.jpg" />
+    <Content Include="Content\files\images2\20.jpg" />
+    <Content Include="Content\files\images2\21.jpg" />
+    <Content Include="Content\files\images2\22.jpg" />
+    <Content Include="Content\files\images2\23.jpg" />
+    <Content Include="Content\files\images2\24.jpg" />
+    <Content Include="Content\files\images2\3.jpg" />
+    <Content Include="Content\files\images2\4.jpg" />
+    <Content Include="Content\files\images2\5.jpg" />
+    <Content Include="Content\files\images2\6.jpg" />
+    <Content Include="Content\files\images2\7.jpg" />
+    <Content Include="Content\files\images2\8.jpg" />
+    <Content Include="Content\files\images2\9.jpg" />
+    <Content Include="Content\files\js\docs.js" />
+    <Content Include="Content\files\lib\hash.js" />
+    <Content Include="Content\files\lib\scissor.js" />
+    <Content Include="Content\files\lib\scissor.min.js" />
+    <Content Include="Content\files\lib\turn.html4.js" />
+    <Content Include="Content\files\lib\turn.html4.min.js" />
+    <Content Include="Content\files\lib\turn.js" />
+    <Content Include="Content\files\lib\turn.min.js" />
+    <Content Include="Content\files\lib\zoom.js" />
+    <Content Include="Content\files\lib\zoom.min.js" />
+    <Content Include="Content\files\pages\1.jpg" />
+    <Content Include="Content\files\pages\10.jpg" />
+    <Content Include="Content\files\pages\11.jpg" />
+    <Content Include="Content\files\pages\12.jpg" />
+    <Content Include="Content\files\pages\13.jpg" />
+    <Content Include="Content\files\pages\14.jpg" />
+    <Content Include="Content\files\pages\15.jpg" />
+    <Content Include="Content\files\pages\16.jpg" />
+    <Content Include="Content\files\pages\17.jpg" />
+    <Content Include="Content\files\pages\18.jpg" />
+    <Content Include="Content\files\pages\19.jpg" />
+    <Content Include="Content\files\pages\2.jpg" />
+    <Content Include="Content\files\pages\20.jpg" />
+    <Content Include="Content\files\pages\21.jpg" />
+    <Content Include="Content\files\pages\22.jpg" />
+    <Content Include="Content\files\pages\23.jpg" />
+    <Content Include="Content\files\pages\24.jpg" />
+    <Content Include="Content\files\pages\25.jpg" />
+    <Content Include="Content\files\pages\26.jpg" />
+    <Content Include="Content\files\pages\27.jpg" />
+    <Content Include="Content\files\pages\28.jpg" />
+    <Content Include="Content\files\pages\29.jpg" />
+    <Content Include="Content\files\pages\3.jpg" />
+    <Content Include="Content\files\pages\30.jpg" />
+    <Content Include="Content\files\pages\31.jpg" />
+    <Content Include="Content\files\pages\32.jpg" />
+    <Content Include="Content\files\pages\33.jpg" />
+    <Content Include="Content\files\pages\34.jpg" />
+    <Content Include="Content\files\pages\35.jpg" />
+    <Content Include="Content\files\pages\36.jpg" />
+    <Content Include="Content\files\pages\37.jpg" />
+    <Content Include="Content\files\pages\38.jpg" />
+    <Content Include="Content\files\pages\39.jpg" />
+    <Content Include="Content\files\pages\4.jpg" />
+    <Content Include="Content\files\pages\40.jpg" />
+    <Content Include="Content\files\pages\41.jpg" />
+    <Content Include="Content\files\pages\42.jpg" />
+    <Content Include="Content\files\pages\43.jpg" />
+    <Content Include="Content\files\pages\44.jpg" />
+    <Content Include="Content\files\pages\45.jpg" />
+    <Content Include="Content\files\pages\46.jpg" />
+    <Content Include="Content\files\pages\47.jpg" />
+    <Content Include="Content\files\pages\48.jpg" />
+    <Content Include="Content\files\pages\49.jpg" />
+    <Content Include="Content\files\pages\5.jpg" />
+    <Content Include="Content\files\pages\50.jpg" />
+    <Content Include="Content\files\pages\51.jpg" />
+    <Content Include="Content\files\pages\52.jpg" />
+    <Content Include="Content\files\pages\53.jpg" />
+    <Content Include="Content\files\pages\54.jpg" />
+    <Content Include="Content\files\pages\55.jpg" />
+    <Content Include="Content\files\pages\56.jpg" />
+    <Content Include="Content\files\pages\57.jpg" />
+    <Content Include="Content\files\pages\58.jpg" />
+    <Content Include="Content\files\pages\59.jpg" />
+    <Content Include="Content\files\pages\6.jpg" />
+    <Content Include="Content\files\pages\60.jpg" />
+    <Content Include="Content\files\pages\61.jpg" />
+    <Content Include="Content\files\pages\62.jpg" />
+    <Content Include="Content\files\pages\63.jpg" />
+    <Content Include="Content\files\pages\64.jpg" />
+    <Content Include="Content\files\pages\65.jpg" />
+    <Content Include="Content\files\pages\66.jpg" />
+    <Content Include="Content\files\pages\67.jpg" />
+    <Content Include="Content\files\pages\68.jpg" />
+    <Content Include="Content\files\pages\69.jpg" />
+    <Content Include="Content\files\pages\7.jpg" />
+    <Content Include="Content\files\pages\70.jpg" />
+    <Content Include="Content\files\pages\71.jpg" />
+    <Content Include="Content\files\pages\72.jpg" />
+    <Content Include="Content\files\pages\73.jpg" />
+    <Content Include="Content\files\pages\74.jpg" />
+    <Content Include="Content\files\pages\75.jpg" />
+    <Content Include="Content\files\pages\76.jpg" />
+    <Content Include="Content\files\pages\77.jpg" />
+    <Content Include="Content\files\pages\78.jpg" />
+    <Content Include="Content\files\pages\79.jpg" />
+    <Content Include="Content\files\pages\8.jpg" />
+    <Content Include="Content\files\pages\80.jpg" />
+    <Content Include="Content\files\pages\9.jpg" />
+    <Content Include="Content\files\pics\covers.jpg" />
+    <Content Include="Content\files\pics\covers.png" />
+    <Content Include="Content\files\pics\left-border.png" />
+    <Content Include="Content\files\pics\loader.gif" />
+    <Content Include="Content\files\pics\preview.jpg" />
+    <Content Include="Content\files\pics\right-border.png" />
+    <Content Include="Content\files\pics\tab-hover.png" />
+    <Content Include="Content\files\pics\tab-off.png" />
+    <Content Include="Content\files\pics\tab-on.png" />
+    <Content Include="Content\grid.css" />
+    <Content Include="Content\navbar.css" />
+    <Content Include="Content\navbar.js" />
+    <Content Include="Content\register.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Media\Comics\Invincible Iron Man 004 %282023%29 %28Digital%29 %28Zone-Empire%29.cbr" />
+    <Content Include="Media\Comics\public_domain_comic_FKB.pdf" />
+    <Content Include="Media\Comics\Peter Parker &amp; Miles Morales - Spider-Men - Double Trouble 004 %282023%29 %28Digital%29 %28Zone-Empire%29.cbr" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\1.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\10.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\11.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\12.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\13.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\14.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\15.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\16.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\17.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\18.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\19.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\2.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\20.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\21.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\22.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\23.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\24.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\25.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\26.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\3.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\4.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\5.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\6.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\7.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\8.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\9.jpg" />
+    <Content Include="Media\Comics\Spider-Man - India 001 %282023%29 %28Digital%29 %28Zone-Empire%29\ComicInfo.xml" />
+    <Content Include="Media\Images\hulk-icon.jpg" />
+    <Content Include="Media\Images\iron-man.jpeg" />
+    <Content Include="Media\Images\mickey-icon.jpeg" />
+    <Content Include="Media\Images\spiderman-icon.jpg" />
+    <Content Include="Media\Images\superman-icon.jpeg" />
+    <Content Include="Media\Images\thor_icon.jpg" />
+    <Content Include="Media\ReadOnline\files\lib\compress.sh" />
+    <Content Include="Media\turnjs4\lib\compress.sh" />
+    <Content Include="Media\turnjs4\samples\docs\test.html" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\1-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\10-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\11-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\12-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\2-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\3-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\4-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\5-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\6-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\7-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\8-regions.json" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\9-regions.json" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\fonts\Stempel-Garamond-W01-Roman.woff" />
+    <Content Include="Media\turnjs4\turnjs4-api-docs.pdf" />
+    <Content Include="Content\toggle.scss" />
+    <Content Include="Media\Images\batman-icon.avif" />
+    <Content Include="Content\files\lib\compress.sh" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Media\ReadOnline\customBook.html" />
+    <Content Include="Media\ReadOnline\files\css\docs.css" />
+    <Content Include="Media\ReadOnline\files\css\jquery.ui.css" />
+    <Content Include="Media\ReadOnline\files\css\jquery.ui.html4.css" />
+    <Content Include="Media\ReadOnline\files\extras\jGestures-license.txt" />
+    <Content Include="Media\ReadOnline\files\extras\jgestures.min.js" />
+    <Content Include="Media\ReadOnline\files\extras\jquery-ui-1.8.20.custom.min.js" />
+    <Content Include="Media\ReadOnline\files\extras\jquery.min.1.7.js" />
+    <Content Include="Media\ReadOnline\files\extras\jquery.mousewheel.min.js" />
+    <Content Include="Media\ReadOnline\files\extras\modernizr.2.5.3.min.js" />
+    <Content Include="Media\ReadOnline\files\js\docs.js" />
+    <Content Include="Media\ReadOnline\files\lib\hash.js" />
+    <Content Include="Media\ReadOnline\files\lib\scissor.js" />
+    <Content Include="Media\ReadOnline\files\lib\scissor.min.js" />
+    <Content Include="Media\ReadOnline\files\lib\turn.html4.js" />
+    <Content Include="Media\ReadOnline\files\lib\turn.html4.min.js" />
+    <Content Include="Media\ReadOnline\files\lib\turn.js" />
+    <Content Include="Media\ReadOnline\files\lib\turn.min.js" />
+    <Content Include="Media\ReadOnline\files\lib\zoom.js" />
+    <Content Include="Media\ReadOnline\files\lib\zoom.min.js" />
+    <Content Include="Media\ReadOnline\files\pages\1.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\10.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\11.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\12.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\13.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\14.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\15.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\16.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\17.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\18.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\19.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\2.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\20.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\21.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\22.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\23.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\24.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\25.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\26.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\27.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\28.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\29.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\3.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\30.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\31.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\32.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\33.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\34.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\35.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\36.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\37.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\38.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\39.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\4.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\40.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\41.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\42.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\43.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\44.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\45.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\46.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\47.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\48.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\49.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\5.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\50.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\51.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\52.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\53.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\54.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\55.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\56.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\57.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\58.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\59.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\6.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\60.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\61.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\62.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\63.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\64.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\65.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\66.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\67.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\68.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\69.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\7.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\70.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\71.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\72.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\73.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\74.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\75.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\76.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\77.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\78.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\79.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\8.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\80.jpg" />
+    <Content Include="Media\ReadOnline\files\pages\9.jpg" />
+    <Content Include="Media\ReadOnline\files\pics\covers.jpg" />
+    <Content Include="Media\ReadOnline\files\pics\covers.png" />
+    <Content Include="Media\ReadOnline\files\pics\left-border.png" />
+    <Content Include="Media\ReadOnline\files\pics\loader.gif" />
+    <Content Include="Media\ReadOnline\files\pics\preview.jpg" />
+    <Content Include="Media\ReadOnline\files\pics\right-border.png" />
+    <Content Include="Media\ReadOnline\files\pics\tab-hover.png" />
+    <Content Include="Media\ReadOnline\files\pics\tab-off.png" />
+    <Content Include="Media\ReadOnline\files\pics\tab-on.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-01.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-02.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-03.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-04.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-05.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-06.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-07.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-08.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-09.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-10.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-11.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-12.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-13.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-14.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-15.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-16.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-17.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-18.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-19.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-20.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-21.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-22.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-23.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-24.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-25.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-26.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-27.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-28.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-29.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-30.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-31.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-32.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-33.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-34.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-35.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-36.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-37.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-38.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-39.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-40.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-41.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-42.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-43.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-44.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-45.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-46.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-47.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-48.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-49.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-50.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-51.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-52.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-53.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-54.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-55.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-56.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-57.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-58.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-59.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-60.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-61.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-62.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-63.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-64.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-65.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-66.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-67.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-68.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-69.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-70.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-71.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-72.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-73.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-74.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-75.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-76.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-77.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-78.png" />
+    <Content Include="Media\ReadOnline\images2\public_domain_comic_FKB\public_domain_comic_FKB-79.png" />
+    <Content Include="Media\ReadOnline\images\1.jpg" />
+    <Content Include="Media\ReadOnline\images\10.jpg" />
+    <Content Include="Media\ReadOnline\images\11.jpg" />
+    <Content Include="Media\ReadOnline\images\12.jpg" />
+    <Content Include="Media\ReadOnline\images\13.jpg" />
+    <Content Include="Media\ReadOnline\images\14.jpg" />
+    <Content Include="Media\ReadOnline\images\15.jpg" />
+    <Content Include="Media\ReadOnline\images\16.jpg" />
+    <Content Include="Media\ReadOnline\images\17.jpg" />
+    <Content Include="Media\ReadOnline\images\18.jpg" />
+    <Content Include="Media\ReadOnline\images\19.jpg" />
+    <Content Include="Media\ReadOnline\images\2.jpg" />
+    <Content Include="Media\ReadOnline\images\20.jpg" />
+    <Content Include="Media\ReadOnline\images\21.jpg" />
+    <Content Include="Media\ReadOnline\images\22.jpg" />
+    <Content Include="Media\ReadOnline\images\23.jpg" />
+    <Content Include="Media\ReadOnline\images\24.jpg" />
+    <Content Include="Media\ReadOnline\images\25.jpg" />
+    <Content Include="Media\ReadOnline\images\26.jpg" />
+    <Content Include="Media\ReadOnline\images\27.jpg" />
+    <Content Include="Media\ReadOnline\images\28.jpg" />
+    <Content Include="Media\ReadOnline\images\29.jpg" />
+    <Content Include="Media\ReadOnline\images\3.jpg" />
+    <Content Include="Media\ReadOnline\images\30.jpg" />
+    <Content Include="Media\ReadOnline\images\31.jpg" />
+    <Content Include="Media\ReadOnline\images\32.jpg" />
+    <Content Include="Media\ReadOnline\images\33.jpg" />
+    <Content Include="Media\ReadOnline\images\34.jpg" />
+    <Content Include="Media\ReadOnline\images\35.jpg" />
+    <Content Include="Media\ReadOnline\images\36.jpg" />
+    <Content Include="Media\ReadOnline\images\37.jpg" />
+    <Content Include="Media\ReadOnline\images\38.jpg" />
+    <Content Include="Media\ReadOnline\images\39.jpg" />
+    <Content Include="Media\ReadOnline\images\4.jpg" />
+    <Content Include="Media\ReadOnline\images\40.jpg" />
+    <Content Include="Media\ReadOnline\images\41.jpg" />
+    <Content Include="Media\ReadOnline\images\42.jpg" />
+    <Content Include="Media\ReadOnline\images\43.jpg" />
+    <Content Include="Media\ReadOnline\images\44.jpg" />
+    <Content Include="Media\ReadOnline\images\45.jpg" />
+    <Content Include="Media\ReadOnline\images\46.jpg" />
+    <Content Include="Media\ReadOnline\images\47.jpg" />
+    <Content Include="Media\ReadOnline\images\48.jpg" />
+    <Content Include="Media\ReadOnline\images\49.jpg" />
+    <Content Include="Media\ReadOnline\images\5.jpg" />
+    <Content Include="Media\ReadOnline\images\50.jpg" />
+    <Content Include="Media\ReadOnline\images\51.jpg" />
+    <Content Include="Media\ReadOnline\images\52.jpg" />
+    <Content Include="Media\ReadOnline\images\53.jpg" />
+    <Content Include="Media\ReadOnline\images\54.jpg" />
+    <Content Include="Media\ReadOnline\images\55.jpg" />
+    <Content Include="Media\ReadOnline\images\56.jpg" />
+    <Content Include="Media\ReadOnline\images\57.jpg" />
+    <Content Include="Media\ReadOnline\images\58.jpg" />
+    <Content Include="Media\ReadOnline\images\59.jpg" />
+    <Content Include="Media\ReadOnline\images\6.jpg" />
+    <Content Include="Media\ReadOnline\images\60.jpg" />
+    <Content Include="Media\ReadOnline\images\61.jpg" />
+    <Content Include="Media\ReadOnline\images\62.jpg" />
+    <Content Include="Media\ReadOnline\images\63.jpg" />
+    <Content Include="Media\ReadOnline\images\64.jpg" />
+    <Content Include="Media\ReadOnline\images\65.jpg" />
+    <Content Include="Media\ReadOnline\images\66.jpg" />
+    <Content Include="Media\ReadOnline\images\67.jpg" />
+    <Content Include="Media\ReadOnline\images\68.jpg" />
+    <Content Include="Media\ReadOnline\images\69.jpg" />
+    <Content Include="Media\ReadOnline\images\7.jpg" />
+    <Content Include="Media\ReadOnline\images\70.jpg" />
+    <Content Include="Media\ReadOnline\images\71.jpg" />
+    <Content Include="Media\ReadOnline\images\72.jpg" />
+    <Content Include="Media\ReadOnline\images\73.jpg" />
+    <Content Include="Media\ReadOnline\images\74.jpg" />
+    <Content Include="Media\ReadOnline\images\75.jpg" />
+    <Content Include="Media\ReadOnline\images\76.jpg" />
+    <Content Include="Media\ReadOnline\images\77.jpg" />
+    <Content Include="Media\ReadOnline\images\78.jpg" />
+    <Content Include="Media\ReadOnline\images\79.jpg" />
+    <Content Include="Media\ReadOnline\images\8.jpg" />
+    <Content Include="Media\ReadOnline\images\80.jpg" />
+    <Content Include="Media\ReadOnline\images\9.jpg" />
+    <Content Include="Media\ReadOnline\index.html" />
+    <Content Include="Media\ReadOnline\pageRenamer.py" />
+    <Content Include="Media\turnjs4\changelog.txt" />
+    <Content Include="Media\turnjs4\extras\jGestures-license.txt" />
+    <Content Include="Media\turnjs4\extras\jgestures.min.js" />
+    <Content Include="Media\turnjs4\extras\jquery-ui-1.8.20.custom.min.js" />
+    <Content Include="Media\turnjs4\extras\jquery.min.1.7.js" />
+    <Content Include="Media\turnjs4\extras\jquery.mousewheel.min.js" />
+    <Content Include="Media\turnjs4\extras\modernizr.2.5.3.min.js" />
+    <Content Include="Media\turnjs4\lib\hash.js" />
+    <Content Include="Media\turnjs4\lib\scissor.js" />
+    <Content Include="Media\turnjs4\lib\scissor.min.js" />
+    <Content Include="Media\turnjs4\lib\turn.html4.js" />
+    <Content Include="Media\turnjs4\lib\turn.html4.min.js" />
+    <Content Include="Media\turnjs4\lib\turn.js" />
+    <Content Include="Media\turnjs4\lib\turn.min.js" />
+    <Content Include="Media\turnjs4\lib\zoom.js" />
+    <Content Include="Media\turnjs4\lib\zoom.min.js" />
+    <Content Include="Media\turnjs4\noice 2\1.jpg" />
+    <Content Include="Media\turnjs4\noice 2\10.jpg" />
+    <Content Include="Media\turnjs4\noice 2\11.jpg" />
+    <Content Include="Media\turnjs4\noice 2\12.jpg" />
+    <Content Include="Media\turnjs4\noice 2\13.jpg" />
+    <Content Include="Media\turnjs4\noice 2\14.jpg" />
+    <Content Include="Media\turnjs4\noice 2\15.jpg" />
+    <Content Include="Media\turnjs4\noice 2\16.jpg" />
+    <Content Include="Media\turnjs4\noice 2\17.jpg" />
+    <Content Include="Media\turnjs4\noice 2\18.jpg" />
+    <Content Include="Media\turnjs4\noice 2\19.jpg" />
+    <Content Include="Media\turnjs4\noice 2\2.jpg" />
+    <Content Include="Media\turnjs4\noice 2\20.jpg" />
+    <Content Include="Media\turnjs4\noice 2\21.jpg" />
+    <Content Include="Media\turnjs4\noice 2\22.jpg" />
+    <Content Include="Media\turnjs4\noice 2\23.jpg" />
+    <Content Include="Media\turnjs4\noice 2\24.jpg" />
+    <Content Include="Media\turnjs4\noice 2\3.jpg" />
+    <Content Include="Media\turnjs4\noice 2\4.jpg" />
+    <Content Include="Media\turnjs4\noice 2\5.jpg" />
+    <Content Include="Media\turnjs4\noice 2\6.jpg" />
+    <Content Include="Media\turnjs4\noice 2\7.jpg" />
+    <Content Include="Media\turnjs4\noice 2\8.jpg" />
+    <Content Include="Media\turnjs4\noice 2\9.jpg" />
+    <Content Include="Media\turnjs4\noice 2\ComicInfo.xml" />
+    <Content Include="Media\turnjs4\samples\basic\css\basic.css" />
+    <Content Include="Media\turnjs4\samples\basic\index.html" />
+    <Content Include="Media\turnjs4\samples\basic\js\basic.js" />
+    <Content Include="Media\turnjs4\samples\basic\pages\1.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\10.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\11.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\12.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\2.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\3.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\4.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\5.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\6.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\7.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\8.jpg" />
+    <Content Include="Media\turnjs4\samples\basic\pages\9.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\css\docs.css" />
+    <Content Include="Media\turnjs4\samples\docs\css\jquery.ui.css" />
+    <Content Include="Media\turnjs4\samples\docs\css\jquery.ui.html4.css" />
+    <Content Include="Media\turnjs4\samples\docs\index.html" />
+    <Content Include="Media\turnjs4\samples\docs\js\docs.js" />
+    <Content Include="Media\turnjs4\samples\docs\noice\1.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\10.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\11.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\12.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\13.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\14.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\15.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\16.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\17.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\18.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\19.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\2.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\20.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\21.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\22.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\23.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\24.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\3.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\4.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\5.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\6.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\7.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\8.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\9.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\noice\ComicInfo.xml" />
+    <Content Include="Media\turnjs4\samples\docs\pages\1.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\10.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\11.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\12.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\13.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\14.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\15.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\16.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\17.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\18.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\19.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\2.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\20.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\21.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\22.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\23.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\24.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\25.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\3.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\4.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\5.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\6.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\7.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\8.png" />
+    <Content Include="Media\turnjs4\samples\docs\pages\9.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\covers.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\pics\covers.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\left-border.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\loader.gif" />
+    <Content Include="Media\turnjs4\samples\docs\pics\preview.jpg" />
+    <Content Include="Media\turnjs4\samples\docs\pics\right-border.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\tab-hover.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\tab-off.png" />
+    <Content Include="Media\turnjs4\samples\docs\pics\tab-on.png" />
+    <Content Include="Media\turnjs4\samples\double-page\css\double-page.css" />
+    <Content Include="Media\turnjs4\samples\double-page\index.html" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\1.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\2.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\3.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\4.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\5.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\6.jpg" />
+    <Content Include="Media\turnjs4\samples\double-page\pages\7.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\css\jquery.ui.css" />
+    <Content Include="Media\turnjs4\samples\magazine\css\jquery.ui.html4.css" />
+    <Content Include="Media\turnjs4\samples\magazine\css\magazine.css" />
+    <Content Include="Media\turnjs4\samples\magazine\index.html" />
+    <Content Include="Media\turnjs4\samples\magazine\js\magazine.js" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\1-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\1-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\1.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\10-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\10-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\10.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\11-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\11-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\11.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\12-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\12-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\12.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\2-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\2-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\2.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\3-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\3-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\3.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\4-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\4-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\4.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\5-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\5-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\5.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\6-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\6-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\6.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\7-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\7-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\7.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\8-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\8-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\8.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\9-large.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\9-thumb.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\9.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pages\preview.jpg" />
+    <Content Include="Media\turnjs4\samples\magazine\pics\arrows.png" />
+    <Content Include="Media\turnjs4\samples\magazine\pics\loader.gif" />
+    <Content Include="Media\turnjs4\samples\magazine\pics\zoom-icons-editable.png" />
+    <Content Include="Media\turnjs4\samples\magazine\pics\zoom-icons.png" />
+    <Content Include="Media\turnjs4\samples\magazine\pics\zoom.png" />
+    <Content Include="Media\turnjs4\samples\magazine\slider.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\css\jquery.ui.css" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\css\jquery.ui.html4.css" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\css\steve-jobs-html4.css" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\css\steve-jobs.css" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\index.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\js\steve-jobs.js" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page10.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page100.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page101.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page102.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page103.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page104.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page105.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page106.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page107.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page108.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page109.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page11.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page110.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page12.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page13.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page14.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page15.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page16.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page17.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page18.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page19.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page20.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page21.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page22.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page23.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page24.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page25.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page26.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page27.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page28.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page29.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page30.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page31.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page32.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page33.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page34.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page35.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page36.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page37.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page38.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page39.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page40.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page41.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page42.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page43.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page44.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page45.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page46.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page47.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page48.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page49.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page5.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page50.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page51.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page52.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page53.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page54.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page55.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page56.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page57.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page58.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page59.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page6.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page60.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page61.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page62.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page63.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page64.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page65.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page66.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page67.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page68.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page69.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page7.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page70.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page71.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page72.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page73.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page74.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page75.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page76.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page77.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page78.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page79.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page8.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page80.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page81.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page82.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page83.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page84.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page85.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page86.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page87.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page88.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page89.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page9.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page90.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page91.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page92.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page93.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page94.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page95.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page96.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page97.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page98.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\page99.html" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pages\preview.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\05.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\06.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\07.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\08.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\09.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\10.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\11.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\12.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\13.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\14.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\15.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\16.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\17.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\18.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\19.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\20.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\21.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\22.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\23.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\24.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\24.png" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\25.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\26.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\27.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\29.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\30.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\31.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\32.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\33.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\34.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\35.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\36.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\37.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\38.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\39.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\40.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\41.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\42.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\43.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\44.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\45.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\46.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\47.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\48.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\book-covers.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\book-covers.png" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\books.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\collegue.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\gradient-page-left.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\gradient-page-right.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\highschool.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\highschool2.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\loader.gif" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\pages-depth.png" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\preview.jpg" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\spine.png" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\thumb.png" />
+    <Content Include="Media\turnjs4\samples\steve-jobs\pics\young.jpg" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Comics\app.css" />
+    <Content Include="Views\Comics\app.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Comics\ComicAdd.cshtml" />
+    <Content Include="Views\Comics\Index.cshtml" />
+    <Content Include="Views\Comics\GetComics.cshtml" />
+    <Content Include="Views\Comics\ComicForm.cshtml" />
+    <Content Include="Views\Comics\EditForm.cshtml" />
+    <Content Include="Views\Comics\ComicDetails.cshtml" />
+    <Content Include="Views\Comics\_cbrAddForm.cshtml" />
+    <Content Include="Views\Comics\PricingList.cshtml" />
+    <Content Include="Views\Shared\_Pricing.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Account\Avatar.cshtml" />
+    <Content Include="Views\Comics\Avatar.cshtml" />
+    <Content Include="Views\FreeTrials\Read.cshtml" />
+    <Content Include="Views\Shared\_ProfilePicture.cshtml" />
+    <Content Include="Views\Shared\_IronManAnimation.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Admin\AllComics.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\comics\" />
+    <Folder Include="Media\turnjs4\samples\basic\pics\" />
+    <Folder Include="Views\MembershipType\" />
+    <Folder Include="Views\Ratings\" />
+    <Folder Include="Views\Renamer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202310030514023_droppingBothTables.resx">
+      <DependentUpon>202310030514023_droppingBothTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310030516243_genresTableCreated.resx">
+      <DependentUpon>202310030516243_genresTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310030516554_comicsTableCreated.resx">
+      <DependentUpon>202310030516554_comicsTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310030658532_populateGenres.resx">
+      <DependentUpon>202310030658532_populateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310031207246_changesDone.resx">
+      <DependentUpon>202310031207246_changesDone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310130651098_categoriesTableAdded.resx">
+      <DependentUpon>202310130651098_categoriesTableAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310310800275_FreeTrialsCreated.resx">
+      <DependentUpon>202310310800275_FreeTrialsCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311355522_FreeTrialsCreated1.resx">
+      <DependentUpon>202310311355522_FreeTrialsCreated1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311356241_populateFreeTrials.resx">
+      <DependentUpon>202310311356241_populateFreeTrials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311403408_FreeTrialsCreated2.resx">
+      <DependentUpon>202310311403408_FreeTrialsCreated2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311407465_freeTrialsTableCreated.resx">
+      <DependentUpon>202310311407465_freeTrialsTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311408404_freeTrialsTableDeleted.resx">
+      <DependentUpon>202310311408404_freeTrialsTableDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311409157_freeTrialsTableCreated1.resx">
+      <DependentUpon>202310311409157_freeTrialsTableCreated1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311410510_freeTrialsTablePopulated.resx">
+      <DependentUpon>202310311410510_freeTrialsTablePopulated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311060647058_ProfilePictureAdded.resx">
+      <DependentUpon>202311060647058_ProfilePictureAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311061205490_ProfilePictureAdded1.resx">
+      <DependentUpon>202311061205490_ProfilePictureAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311071641285_ProfilePictureRequiredRemoved.resx">
+      <DependentUpon>202311071641285_ProfilePictureRequiredRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312031507062_merchandiseTableCreated.resx">
+      <DependentUpon>202312031507062_merchandiseTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312031709364_RatingsTableCreated.resx">
+      <DependentUpon>202312031709364_RatingsTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312042032257_ratingsTableUserIdIntToString.resx">
+      <DependentUpon>202312042032257_ratingsTableUserIdIntToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312060844148_ratingsNowNullable.resx">
+      <DependentUpon>202312060844148_ratingsNowNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312121956172_whatChanges.resx">
+      <DependentUpon>202312121956172_whatChanges.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49651</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44325/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

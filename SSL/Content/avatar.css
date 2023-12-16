@@ -1,0 +1,102 @@
+﻿/*html {
+	background: #f2f6f8;*/ /* Old browsers */
+	/*background: -moz-linear-gradient(top, #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%);*/ /* FF3.6+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f6f8), color-stop(50%,#d8e1e7), color-stop(51%,#b5c6d0), color-stop(100%,#e0eff9));*/ /* Chrome,Safari4+ */
+	/*background: -webkit-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);*/ /* Chrome10+,Safari5.1+ */
+	/*background: -o-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);*/ /* Opera 11.10+ */
+	/*background: -ms-linear-gradient(top, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);*/ /* IE10+ */
+	/*background: linear-gradient(to bottom, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);*/ /* W3C */
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 );*/ /* IE6-9 */
+/*}*/
+
+
+/*.body {
+	width: 200px;
+	font-family: sans-serif;
+	margin: 10% auto;
+	text-align: center;
+	height: 200px;
+}
+*/
+#divCircle {
+	width: 195px;
+	height: 195px;
+	border-radius: 200px;
+	position: relative;
+	overflow: hidden;
+	top: -10px;
+	left: -10px;
+	opacity: 0;
+	margin: -60px;
+	-webkit-transition: opacity 0s 0s;
+}
+
+	#divCircle img {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		background: orange;
+		border-radius: 60px;
+		border: 2px #000 solid;
+		-webkit-transition: all 0.4s;
+	}
+
+		#divCircle img:hover {
+			border: 2px #333 solid;
+			width: 55px;
+			height: 55px;
+		}
+
+#middleBubble {
+	text-align: center;
+	vertical-align: top;
+	color: #252525; /*#6d6e71*/
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	text-align: center;
+}
+
+	#middleBubble img {
+		top: 0px !important;
+		left: 0px !important;
+	}
+
+.mainImg {
+	width: 60px;
+	position: absolute;
+	margin: -60px;
+}
+
+	.mainImg img {
+		width: 60px;
+		border-width: 0px;
+		border-style: solid;
+		border-color: rgba(0,0,0,0);
+		border-radius: 600px;
+		overflow: hidden;
+		-webkit-transition: all 0.5s;
+		margin: 60px 0 0 60px;
+	}
+
+.avatarList {
+	margin: 0px -60px;
+	display: inline-block;
+	/*  border:1px black solid; */
+	width: 60px;
+	height: 60px;
+	background: orange;
+	border-radius: 60px;
+}
+
+	.avatarList.expand .mainImg img {
+		border-color: rgba(0,0,0,1);
+		border-width: 60px;
+		margin: 0;
+	}
+
+#divCircle.expand {
+	display: block;
+	opacity: 1;
+	-webkit-transition: opacity 0.5s 0.4s;
+}

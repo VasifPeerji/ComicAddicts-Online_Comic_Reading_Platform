@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .comic-description {
+    padding: 78px 0;
+    background-color: #191919;
+  }
+  
+  .comic-description img {
+    height: auto;
+    width: 420px;
+  }
+  
+  .description {
+    width: 550px;
+  }
+  
+  .main {
+    width: 1130px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .description h1 {
+    color: #fff;
+    font-size: 80px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+  
+  .description p {
+    color: gray;
+    letter-spacing: 1px;
+    line-height: 28px;
+    font-size: 18px;
+    margin-bottom: 45px;
+  }
+  
+  button {
+    background: #6ab547;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 13px 30px;
+    border-radius: 30px;
+    transition: .4s;
+  }
+  
+  button:hover {
+    background: transparent;
+    border: 2px solid #6ab547;
+    cursor: pointer;
+  }
+  
+  .episodes {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #191919;
+  }
+  
+  .episodes ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .episodes li {
+    margin: 10px;
+  }
+  
+  .episodes li a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #191919;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .episodes li a:hover {
+    background-color: #6ab547;
+  }
+  
+  .copyright {
+    padding: 10px;
+    border-top: 1px solid var(--body-bg);
+    background-color: var(--body-bg);
+    text-align: center;
+}
+
+  @media screen and (max-width: 1024px) {
+    .comic-description {
+      padding: 40px 0;
+    }
+  
+    .comic-description img {
+      width: 100%;
+    }
+  
+    .description {
+      width: 100%;
+    }
+  
+    .main {
+      width: 100%;
+      padding: 0 20px;
+      flex-direction: column;
+    }
+  
+    .description h1 {
+      font-size: 48px;
+    }
+  
+    .description p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  

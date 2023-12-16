@@ -1,0 +1,18 @@
+namespace SSL.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class ProfilePictureRequiredRemoved : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.AspNetUsers", "ProfilePicture", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.AspNetUsers", "ProfilePicture", c => c.String(nullable: false));
+        }
+    }
+}

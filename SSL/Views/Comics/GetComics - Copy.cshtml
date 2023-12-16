@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SSL.Models.Comics>
+@{
+    ViewBag.Title = "GetComics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetComics</h2>
+
+<div class="container bg-black ">
+<div class="row">
+
+    @foreach (var comic in Model)
+    {
+        <!--<div class="carousel slide">-->
+        @*<img src="@($"{comic.ReadOnline}1.jpg")">*@
+        <!--<div class="carousel-inner">
+                <div class="carousel-item">
+
+                </div>
+            </div>
+        </div>-->
+
+
+        <div class="col-md-4">
+            <img src="~/Media/turnjs4/samples/docs/@Url.Content(comic.ReadOnline+"/1.jpg")" width="200px">
+            @* <input type="hidden" name="mycomic" value="@comic.ReadOnline" />*@
+            <h2 class="text-bg-danger"> @comic.Name</h2>
+            @* <a href="~/Media/ReadOnline/index.html" data-book-url="@comic.ReadOnline">Read Online</a>*@
+
+            @*<a href="~/Media/ReadOnline/index.html" target="_blank" data-book-url="@comic.ReadOnline" onclick="loadPage('@comic.ReadOnline', 25)">Read Online</a>*@
+
+            <a href="~/Media/turnjs4/samples/docs/index.html?val=@comic.ReadOnline" target="_blank">Read Online</a>
+
+            <a href="~/Media/ReadOnline/index.html?val=@comic.ReadOnline" target="_blank">Read Online</a>
+
+
+            @*<a href="~/Media/turnjs4/samples/docs/index.html">Read Online</a>*@
+
+
+
+            @*<img src="@Url.Content(comic.ReadOnline+"/1.jpg")" width="200px">
+                <h2 class="text-bg-danger"> @comic.Name</h2>
+                <a href="~/Media/ReadOnline/index.html" data-book-url="@comic.ReadOnline">Read Online</a>*@
+        </div>
+
+    </div>
+
+ 
+}
+
+

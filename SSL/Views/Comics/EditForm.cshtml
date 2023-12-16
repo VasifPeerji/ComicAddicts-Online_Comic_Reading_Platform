@@ -1,0 +1,63 @@
+﻿@model SSL.ViewModel.ComicFormViewModel
+@{
+    ViewBag.Title = "EditForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditForm</h2>
+
+<h2>ComicForm</h2>
+
+@using (Html.BeginForm("Update", "Comics", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comic.Name)
+        @Html.TextBoxFor(m => m.Comic.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comic.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comic.GenreDropDownId)
+
+        @if (Model.Comic.GenreDropDownId == null && Model.Comic.Id!=null)
+        {
+            @Html.TextBoxFor(m => m.Comic.Genre, new { @class = "form-control" })
+        }
+        else
+        {
+            @Html.DropDownListFor(m => m.Comic.GenreDropDownId, new SelectList(Model.GenresDropDown, "Id", "Name"), "Select a genre type", new { @class = "form-control" })
+        }
+
+        @Html.ValidationMessageFor(m => m.Comic.GenreDropDownId, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comic.Summary)
+        @Html.TextAreaFor(m => m.Comic.Summary, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comic.Summary, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comic.Publisher)
+        @Html.TextBoxFor(m => m.Comic.Publisher, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comic.Publisher, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Comic.Pages)
+        @Html.TextBoxFor(m => m.Comic.Pages, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Comic.Pages, "", new { @class = "text-danger" })
+    </div>
+
+
+    @*<input type="file" name="myfolder" webkitdirectory mozdirectory />*@
+
+    <input type="file" name="file" />
+
+
+    @Html.HiddenFor(m => m.Comic.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
