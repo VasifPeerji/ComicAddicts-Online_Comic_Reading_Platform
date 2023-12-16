@@ -389,17 +389,17 @@ input:checked+label {
 
 
 
-                        <div class="flexx-container">
-                            <div id="keydown">
-                                @Html.TextBoxFor(m => Model.Comic.Genre, new { @class = "toggle_off_h4", @id = "genre" })
-                                @Html.ValidationMessageFor(m => Model.Comic.Genre, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="toggle_off_h4_div2">
-                                @Html.TextBoxFor(m => Model.Comic.Publisher, new { @class = "toggle_off_h4" })
-                                @Html.ValidationMessageFor(m => Model.Comic.Publisher, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="flexx-container">
+                        <div id="keydown">
+                            @Html.TextBoxFor(m => Model.Comic.Genre, new { @class = "toggle_off_h4", @id = "genre" })
+                            @Html.ValidationMessageFor(m => Model.Comic.Genre, "", new { @class = "text-danger" })
                         </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="toggle_off_h4_div2">
+                            @Html.TextBoxFor(m => Model.Comic.Publisher, new { @class = "toggle_off_h4" })
+                            @Html.ValidationMessageFor(m => Model.Comic.Publisher, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
                         <div class="comic-infos" style="text-align: center;">
 
@@ -477,7 +477,7 @@ input:checked+label {
 
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Gold"))
                 {
-                    <a href="@Model.Comic.Download" class="btn btn-hover" download>
+                    <a href="~/Media/Comics/@Model.Comic.Download" class="btn btn-hover" download>
                         <i class="bx bxs-right-arrow"></i>&nbsp;
                         <span>Download</span>
                     </a>
@@ -492,7 +492,7 @@ input:checked+label {
                 else if (User.Identity.IsAuthenticated && User.IsInRole("Silver"))
                 {
 
-                    <a href="@Model.Comic.Download" class="btn btn-hover" onclick="window.location.href = '@Url.Action("DownloadTrials", "FreeTrials")" download>
+                    <a href="~/Media/Comics/@Model.Comic.Download" class="btn btn-hover" onclick="window.location.href = '@Url.Action("DownloadTrials", "FreeTrials")" download>
                         <i class="bx bxs-right-arrow"></i>&nbsp;
                         <span>Download</span>
                     </a>

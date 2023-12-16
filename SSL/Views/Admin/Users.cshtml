@@ -43,7 +43,7 @@
                     <td><img src="~/Media/Images/spiderman-icon.jpg" width="200px" /></td>
                 }
             <td>
-                <a href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" style="background-color: red; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Delete</a>
+                <a onclick="confirm('Are You Sure You want to delete this comic ?')" href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" style="background-color: red; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Delete</a>
 
             </td>
                 <!-- Add other properties you want to display -->

@@ -79,6 +79,104 @@
            padding-bottom:-1px;
         }
 
+
+        .alert .inner {
+            display: block;
+            padding: 6px;
+            margin: 6px;
+            border-radius: 3px;
+            border: 1px solid rgb(180,180,180);
+            background-color: rgb(212,212,212);
+        }
+
+        .alert .close {
+            float: right;
+            margin: 3px 12px 0px 0px;
+            cursor: pointer;
+        }
+
+        .alert .inner, .alert .close {
+            color: rgb(88,88,88);
+        }
+
+        .alert input {
+            display: none;
+        }
+
+            .alert input:checked ~ * {
+                animation-name: dismiss,hide;
+                animation-duration: 300ms;
+                animation-iteration-count: 1;
+                animation-timing-function: ease;
+                animation-fill-mode: forwards;
+                animation-delay: 0s,100ms;
+            }
+
+        .alert.error .inner {
+            border: 1px solid rgb(238,211,215);
+            background-color: rgb(242,222,222);
+            padding: 15px;
+        }
+
+        .alert.error .inner, .alert.error .close {
+            color: maroon;
+            font-weight: 900;
+        }
+
+        .alert.success .inner {
+            border: 1px solid rgb(214,233,198);
+            background-color: rgb(223,240,216);
+        }
+
+        .alert.success .inner, .alert.success .close {
+            color: rgb(70,136,71);
+        }
+
+        .alert.info .inner {
+            border: 1px solid rgb(188,232,241);
+            background-color: rgb(217,237,247);
+        }
+
+        .alert.info .inner, .alert.info .close {
+            color: rgb(58,135,173);
+        }
+
+        .alert.warning .inner {
+            border: 1px solid rgb(251,238,213);
+            background-color: rgb(252,248,227);
+        }
+
+        .alert.warning .inner, .alert.warning .close {
+            color: rgb(192,152,83);
+        }
+
+        i::before {
+            padding: 23px;
+        }
+
+        @@keyframes dismiss {
+            0% {
+                opacity: 1;
+            }
+
+            90%, 100% {
+                opacity: 0;
+                font-size: 0.1px;
+                transform: scale(0);
+            }
+        }
+
+        @@keyframes hide {
+            100% {
+                height: 0px;
+                width: 0px;
+                overflow: hidden;
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
+        }
+
     </style>
 
 </head>
@@ -89,6 +187,18 @@
     @*@Html.Partial("~/Views/Shared/_Navbar.cshtml")*@
     @{Html.RenderAction("Navbar", "Account");}
 
+    @if (!string.IsNullOrEmpty(ViewBag.WrongFile))
+    {
+        <div class="alert error">
+            <input type="checkbox" id="alert1" />
+            <label class="close" title="close" for="alert1">
+                <i class="icon-remove" style="padding-top:10px"></i>
+            </label>
+            <h2 class="inner">
+                @ViewBag.WrongFile
+            </h2>
+        </div>
+    }
     <!--END NAV-->
     <!--HERO SECTION-->
     <div class="hero-section">
@@ -311,61 +421,61 @@
 
 
     <!--LATEST BOOKS SECTION-->
-<div class="section">
-    <div class="container">
-        @foreach (var publisherGroup in Model.Comics)
-        {
-            <div class="section-header">
-                @publisherGroup.Key Comics
-            </div>
-            <div id="comics" class="book-slide carousel-nav-center owl-carousel">
-                @foreach (var comic in publisherGroup)
-                {
-                    <!-- COMIC ITEM -->
-                    <a href='@Url.Action("Edit", "Comics", new { id = Server.UrlEncode(comic.Id.ToString()) })' class="comic-item">
-                        <img src="~/Media/turnjs4/samples/docs/@Url.Content(comic.ReadOnline + "/1.jpg")" alt="">
-                        <div class="comic-item-content">
-                            @if (User.IsInRole("Admin"))
-                            {
-                                using (Html.BeginForm("Delete", "Comics"))
+    <div class="section">
+        <div class="container">
+            @foreach (var publisherGroup in Model.Comics)
+            {
+                <div class="section-header">
+                    @publisherGroup.Key Comics
+                </div>
+                <div id="comics" class="book-slide carousel-nav-center owl-carousel">
+                    @foreach (var comic in publisherGroup)
+                    {
+                        <!-- COMIC ITEM -->
+                        <a href='@Url.Action("Edit", "Comics", new { id = Server.UrlEncode(comic.Id.ToString()) })' class="comic-item">
+                            <img src="~/Media/turnjs4/samples/docs/@Url.Content(comic.ReadOnline + "/1.jpg")" alt="">
+                            <div class="comic-item-content">
+                                @if (User.IsInRole("Admin"))
                                 {
-                                    <input name="Id" type="hidden" value="@comic.Id" />
-                                    <button id="comic_delete" type="submit">
-                                        <i class='bx bx-minus myi'></i>
-                                    </button>
+                                    using (Html.BeginForm("Delete", "Comics"))
+                                    {
+                                        <input name="Id" type="hidden" value="@comic.Id" />
+                                        <button onclick="confirm('Are You Sure You want to delete this comic ?')" id="comic_delete" type="submit">
+                                            <i class='bx bx-minus myi'></i>
+                                        </button>
+                                    }
                                 }
-                            }
-                            <div class="comic-infos" style="text-align: center;">
-                                <div class="comic-info">
-                                    <i class="bx bxs-star"></i>
-                                    @if (Model.stars.ContainsKey(comic.Id))
-                                    {
-                                        <span style="font-size: medium;">@Model.stars[comic.Id]</span>
-                                    }
-                                    else
-                                    {
-                                        <span style="font-size: medium;">Unrated</span>
-                                    }
+                                <div class="comic-infos" style="text-align: center;">
+                                    <div class="comic-info">
+                                        <i class="bx bxs-star"></i>
+                                        @if (Model.stars.ContainsKey(comic.Id))
+                                        {
+                                            <span style="font-size: medium;">@Model.stars[comic.Id]</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="font-size: medium;">Unrated</span>
+                                        }
+                                    </div>
+                                    <div class="comic-info">
+                                        <i class="bx bxs-book"></i>
+                                        <span style="font-size: medium;">@comic.Pages</span>
+                                    </div>
+                                    <div class="comic-info">
+                                        <span style="font-size: medium;">12+</span>
+                                    </div>
                                 </div>
-                                <div class="comic-info">
-                                    <i class="bx bxs-book"></i>
-                                    <span style="font-size: medium;">@comic.Pages</span>
-                                </div>
-                                <div class="comic-info">
-                                    <span style="font-size: medium;">12+</span>
+                                <div class="comic-item-title">
+                                    <h3>@comic.Name</h3>
                                 </div>
                             </div>
-                            <div class="comic-item-title">
-                                <h3>@comic.Name</h3>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- END COMIC ITEM -->
-                }
-            </div>
-        }
+                        </a>
+                        <!-- END COMIC ITEM -->
+                    }
+                </div>
+            }
+        </div>
     </div>
-</div>
     <!--END LATEST BOOKS SECTION-->
     @*   @section script
         {

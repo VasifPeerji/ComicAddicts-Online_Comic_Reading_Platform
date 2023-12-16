@@ -29,27 +29,27 @@
             <th>Date Added</th>
             <th>Publisher</th>
             <th>Comic</th>
-            <th>Delete</th>
-            <!-- Add other properties you want to display -->
+            <th>Actions</th>
+           
         </tr>
 
         @foreach (var user in Model)
         {
             <tr>
                 <td>@user.Name</td>
-                <td>@user.Summary</td>
+                <td style="font-size:small">@user.Summary</td>
                 <td>@user.Genre</td>
                 <td>@user.Pages</td>
                 <td>@user.DateAdded</td>
                 <td>@user.Publisher</td>
                
-                    <td><img src="~../../Media/turnjs4/samples/docs/@user.ReadOnline/1.jpg" width="200px" /></td>
+                    <td><img src="~/Media/turnjs4/samples/docs/@user.ReadOnline/1.jpg" width="700px" /></td>
                 
-                <td>
-                    <a href="@Url.Action("DeleteComic", "Admin", new { id = user.Id })" style="background-color: red; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Delete</a>
-
-                </td>
-                <!-- Add other properties you want to display -->
+                    <td>
+                        <a href="@Url.Action("Edit", "Comics", new { id = user.Id })" style="background-color: yellowgreen; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Edit</a>
+                      &nbsp;&nbsp;  <a onclick="confirm('Are You Sure You want to delete this comic ?')" href="@Url.Action("Delete", "Comics", new { id = user.Id })" style="background-color: red; padding: 14px; list-style: none; border-radius: 9%; margin-top: 10px; display: inline-block; color: white; text-decoration: none;">Delete</a>
+                    </td>
+               
             </tr>
         }
     </table>

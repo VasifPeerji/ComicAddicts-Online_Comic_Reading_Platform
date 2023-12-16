@@ -23,15 +23,12 @@ namespace SSL
                 string extractionPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Media/turnjs4/samples/docs"), fileNameWithoutExension + "/");
 
                 string readOnlinePath = fileNameWithoutExension;
-                string downloadPath = "~/Media/Comics/" + fileName;
+                string downloadPath = fileName;
+
+                bool foundXml = false;
 
                 comic.ReadOnline = readOnlinePath;
                 comic.Download = downloadPath;
-
-                if (!Directory.Exists(extractionPath))
-                {
-                    Directory.CreateDirectory(extractionPath);
-                }
 
                
                 using (var archive = ArchiveFactory.Open(cbzFilePath))
@@ -42,6 +39,7 @@ namespace SSL
                         {
                             if (entry.Key.EndsWith(".xml"))
                             {
+                                foundXml = true;
                                 using (var xmlStream = entry.OpenEntryStream())
                                 {
                                     XDocument doc = XDocument.Load(xmlStream);
@@ -50,8 +48,46 @@ namespace SSL
                                     comic.Pages = System.Convert.ToInt32(doc.Root.Element("PageCount").Value);
                                     comic.Publisher = doc.Root.Element("Publisher").Value;
                                     comic.Genre = doc.Root.Element("Genre").Value;
+                                    string[] delimiters = { ",", "/" };
+                                    string[] genres = comic.Genre.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                                    string selectedGenre = genres.FirstOrDefault();
+                                    if (selectedGenre == "Action")
+                                    {
+                                        comic.GenreDropDownId = 1;
+                                    }
+                                    else if(selectedGenre == "Superhero")
+                                    {
+                                        comic.GenreDropDownId = 2;
+                                    }
+                                    else if (selectedGenre == "Horror")
+                                    {
+                                        comic.GenreDropDownId = 3;
+                                    }
+                                    else if (selectedGenre == "Adventure")
+                                    {
+                                        comic.GenreDropDownId = 4;
+                                    }
+                                    else if (selectedGenre == "Fantasy")
+                                    {
+                                        comic.GenreDropDownId = 5;
+                                    }
+                                    else if (selectedGenre == "Children's" || selectedGenre == "Kids")
+                                    {
+                                        comic.GenreDropDownId = 6;
+                                    }
+                                    else
+                                    {
+                                        comic.GenreDropDownId = 7;
+                                    }
+
                                     comic.DateAdded = DateTime.Now;
                                 }
+                                break;
+                            }
+
+                            if (!Directory.Exists(extractionPath))
+                            {
+                                Directory.CreateDirectory(extractionPath);
                             }
 
                             string entryFilePath = Path.Combine(extractionPath, entry.Key);
@@ -64,12 +100,15 @@ namespace SSL
                         }
                     }
                 }
+                if (foundXml==false)
+                {
+                    return null;
+                }
 
                 Console.WriteLine("Extraction and processing completed.");
             }
             catch (Exception ex)
             {
-                // Handle exceptions here (e.g., log the error)
                 Console.WriteLine($"Error processing comic: {ex.Message}");
             }
 

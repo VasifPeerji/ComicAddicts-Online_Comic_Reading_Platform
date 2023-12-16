@@ -56,50 +56,23 @@ namespace SSL.Controllers
             myfile.SaveAs(path);
             Decompressor d = new Decompressor();
             Comics comic = d.Convert(myfile);
+            if (comic == null)
+            {
+                var comics = _context.Comics.GroupBy(c => c.Publisher).ToList();
+                var stars = CalculateAverageStarsByComic();
+                var viewmodel = new GetComicsViewModel
+                {
+                    Comics = comics,
+                    stars = stars
+                };
+                ViewBag.WrongFile = "Not A Proper File";
+                return View("GetComics",viewmodel);
+            }
             Console.Write(myfile);
             _context.Comics.Add(comic);
             _context.SaveChanges();
 
-            /*string pdfPath = $"D:\\.Net\\SSL\\SSL\\App_Data\\comics\\{fileName}";
-            Console.Write(pdfPath);
-            string outputFolder = "D:\\.Net\\SSL\\SSL\\App_Data\\comics\\";
-
-            using (MagickImageCollection pdfDocument = new MagickImageCollection())
-            {
-                pdfDocument.Read(pdfPath);
-
-                for (int pageIndex = 1; pageIndex <= pdfDocument.Count; pageIndex++)
-                {
-                    using (MagickImage image = new MagickImage(pdfDocument[pageIndex]))
-                    {
-                        // Set the output image format (JPEG)
-                        image.Format = MagickFormat.Jpeg;
-
-                        // Set any additional settings for image quality, size, etc.
-                        image.Quality = 90; // Adjust as needed
-
-                        // Specify the output file path for the current page
-                        string outputPath = $"{outputFolder}/page_{pageIndex}.jpg";
-                        string outputPath = $"{outputFolder}//{pageIndex}.jpg";
-
-                        // Save the image
-                        image.Write(outputPath);
-                    }
-                }
-                // Verify that the user selected a file
-                if (myfile != null && myfile.ContentLength > 0)
-                {
-                    // extract only the filename
-                    var fileName = Path.GetFileName(myfile.FileName);
-                    // store the file inside ~/App_Data/uploads folder
-                    //Path.Combine Server.MapPath is used for virtual path 
-                    var path = Path.Combine(Server.MapPath("~/Media/Comics"), fileName);
-                    myfile.SaveAs(path);
-                }
-                Rename.Renamemyfile("D:\\.Net\\docs\\images2\\public_domain_comic_FKB");
-                return View();*/
-            /*}*/
-            /*  return View(comic);*/
+            
             return RedirectToAction("GetComics", "Comics");
         }
         [Authorize(Roles = RoleName.Admin)]
@@ -238,7 +211,38 @@ namespace SSL.Controllers
             comicInDb.DateAdded = DateTime.Now;
             if (comic.GenreDropDownId == null)
             {
-                comicInDb.Genre = comic.Genre;
+                comic.Genre = comic.Genre;
+                string[] delimiters = { ",", "/" };
+                string[] genres = comic.Genre.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                string selectedGenre = genres.FirstOrDefault();
+                if (selectedGenre == "Action")
+                {
+                    comic.GenreDropDownId = 1;
+                }
+                else if (selectedGenre == "Superhero")
+                {
+                    comic.GenreDropDownId = 2;
+                }
+                else if (selectedGenre == "Horror")
+                {
+                    comic.GenreDropDownId = 3;
+                }
+                else if (selectedGenre == "Adventure")
+                {
+                    comic.GenreDropDownId = 4;
+                }
+                else if (selectedGenre == "Fantasy")
+                {
+                    comic.GenreDropDownId = 5;
+                }
+                else if (selectedGenre == "Children's" || selectedGenre == "Kids")
+                {
+                    comic.GenreDropDownId = 6;
+                }
+                else
+                {
+                    comic.GenreDropDownId = 7;
+                }
             }
             else
             {
@@ -247,13 +251,11 @@ namespace SSL.Controllers
             _context.SaveChanges();
             if (Request.Form["detailsKey"] != null && Request.Form["detailsKey"] == "detailsKey")
             {
-                // If "detailsKey" is set and is equal to "detailsKey", redirect to ComicDetails
                 int id = comic.Id;
                 return RedirectToAction("Edit", "Comics", new { id = id });
             }
             else
             {
-                // If "detailsKey" is not set or set to something else, redirect to GetComics
                 return RedirectToAction("GetComics", "Comics");
             }
 
@@ -273,12 +275,24 @@ namespace SSL.Controllers
         {
             var comicInDb = _context.Comics.SingleOrDefault(c => c.Id == id);
             var rating = _context.Ratings.FirstOrDefault(c => c.ComicId == id);
+            var folderPath = Server.MapPath("~/Media/turnjs4/samples/docs/" + comicInDb.ReadOnline);
+            var filePath = Server.MapPath("~/Media/Comics/" + comicInDb.Download);
+            if (Directory.Exists(folderPath))
+            {
+                Directory.Delete(folderPath, true);
+            }
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+
             if (rating != null)
             {
                 _context.Ratings.Remove(rating);
             }
             _context.Comics.Remove(comicInDb);
             _context.SaveChanges();
+             
             return RedirectToAction("GetComics", "Comics");
         }
         [Authorize]

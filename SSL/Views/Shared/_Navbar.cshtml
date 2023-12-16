@@ -162,6 +162,11 @@
                 <li style="padding-left:30px;font-size:20px"><a href="@Url.Action("GetComics","Comics")">Home</a></li>
                 
                 <li style="padding-left: 30px; font-size: 20px"><a href="@Url.Action("PricingList","Comics")">Memberships</a></li>
+
+                @if (User.IsInRole("Admin")) { 
+                    <li style="padding-left:30px;font-size:20px"><a href="@Url.Action("AllComics","Admin")">Comics</a></li>
+                    <li style="padding-left:30px;font-size:20px"><a href="@Url.Action("Users","Admin")">Users</a></li>
+                }
                 
                 <li style="padding-left: 30px; font-size: 20px"><a href="#"></a></li>
 
@@ -194,7 +199,7 @@
                     </div>
                     <div class="menu">
                         <ul>
-                            <li><a href="#"><i class="ph-bold ph-user"></i>&nbsp;Profile</a></li>
+                            <li><a href="@Url.Action("Avatar","Account")"><i class="ph-bold ph-user"></i>&nbsp;Avatar</a></li>
                             <li><a href="#"><i class="ph-bold ph-envelope-simple"></i>&nbsp;Inbox</a></li>
                             <li><a href="#"><i class="ph-bold ph-gear-six"></i>&nbsp;Settings</a></li>
                             <li><a href="#"><i class="ph-bold ph-question"></i>&nbsp;Help</a></li>
