@@ -3,6 +3,7 @@
 ###############################################################################
 * text=auto
 SSL/Scripts/**/* linguist-vendored
+*.cshtml linguist-language=CSharp
 
 ###############################################################################
 # Set default behavior for command prompt diff.
